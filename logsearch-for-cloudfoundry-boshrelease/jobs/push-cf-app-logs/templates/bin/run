@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+set -x
+
+PATH=/var/vcap/packages/cli/bin:$PATH
+CF_COLOR=false
+
+export TMPDIR=/var/vcap/data/tmp
+
+# target api
+cf api --skip-ssl-validation <%= p("push-cf-app-logs.cloudfoundry_cloudControllerUri") %>
+
+# login without org and space in case they do not exist yet
+cf auth <%= p("push-cf-app-logs.cloudfoundry_admin_username") %> "<%= p("push-cf-app-logs.cloudfoundry_admin_password").gsub('"', '\"') %>"
+
+# Create a new org, don't fail if they already exist
+cf create-org "system" || true
+
+# Target the new org
+cf target -o "system"
+
+# Create a new space, don't fail if it already exists
+cf create-space "elk-for-pcf" -o "system"  || true
+
+# Target new space.
+cf target -o "system" -s "elk-for-pcf"
+
+# Push app
+echo "cf push -f /var/vcap/jobs/push-cf-app-logs/config/manifest.yml"
+cf push -f /var/vcap/jobs/push-cf-app-logs/config/manifest.yml
+
+EXITSTATUS=0
+
+echo "Errand push-cf-app-logs is complete; exit status $EXITSTATUS"
+exit $EXITSTATUS

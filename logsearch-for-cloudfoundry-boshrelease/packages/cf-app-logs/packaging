@@ -1,0 +1,4 @@
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+cp cf-app-logs/cf-app-logs-0.0.2-SNAPSHOT.jar ${BOSH_INSTALL_TARGET}

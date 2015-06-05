@@ -20,6 +20,18 @@ properties:
     firehose-user: admin
     firehose-password: admin
     syslog-server: "10.244.10.6:514"
+  push-cf-app-logs:
+    cloudfoundry_cloudControllerUri: "https://api.10.244.0.34.xip.io"
+    cloudfoundry_admin_username: "admin"
+    cloudfoundry_admin_password: "admin"
+    cloudfoundry_uaaUri: "http://uaa.10.244.0.34.xip.io"
+    oauth2_resource_jwt_keyUri: "http://uaa.10.244.0.34.xip.io/token_key"
+    oauth2_client_accessTokenUri: "http://login.10.244.0.34.xip.io/oauth/token"
+    oauth2_client_userAuthorizationUri: "http://login.10.244.0.34.xip.io/oauth/authorize"
+    oauth2_client_clientId: "elk-for-pcf"
+    oauth2_client_clientSecret: "secret"
+    logsearch_elasticsearchAdminUri: "http://10.244.10.2:9200"
+    zuul_routes_kibana_url: "http://logs.10.244.0.34.xip.io"
   push-kibana:
     cloudfoundry_cloudControllerUri: "https://api.10.244.0.34.xip.io"
     cloudfoundry_admin_username: "admin"

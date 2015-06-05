@@ -1,0 +1,5 @@
+---
+name: cf-app-logs
+dependencies: []
+files: 
+  - cf-app-logs/cf-app-logs-0.0.2-SNAPSHOT.jar

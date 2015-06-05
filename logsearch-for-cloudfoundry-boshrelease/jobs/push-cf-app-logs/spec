@@ -1,0 +1,31 @@
+---
+name: push-cf-app-logs
+packages:
+- cli
+- cf-app-logs
+templates:
+  bin/run: bin/run
+  config/manifest.yml: config/manifest.yml
+properties:
+  push-cf-app-logs.cloudfoundry_cloudControllerUri:
+    description: "The Elastic Runtime API endpoint URL ( eg: http://api.10.244.0.34.xip.io )"
+  push-cf-app-logs.cloudfoundry_admin_username:
+    description: "The Elastic Runtime API user"
+  push-cf-app-logs.cloudfoundry_admin_password:
+    description: "The Elastic Runtime API user's password"
+  push-cf-app-logs.cloudfoundry_uaaUri:
+    description: "The Elastic Runtime UAA endpoint Uri ( eg: http://uaa.10.244.0.34.xip.io )"
+  push-cf-app-logs.oauth2_resource_jwt_keyUri:
+    description: "The Elastic Runtime UAA JWT key Uri ( eg: http://uaa.10.244.0.34.xip.io/token_key)"
+  push-cf-app-logs.oauth2_client_accessTokenUri:
+    description: "The Elastic Runtime Login OAuth2 Access Token Uri ( eg: http://login.10.244.0.34.xip.io/oauth/token )"
+  push-cf-app-logs.oauth2_client_userAuthorizationUri:
+    description: "The Elastic Runtime Login OAuth2 Authorization Uri ( eg: http://login.10.244.0.34.xip.io/oauth/authorize )"
+  push-cf-app-logs.oauth2_client_clientId:
+    description: "The Elastic Runtime UAA logsearch_for_cloudfoundry client username"
+  push-cf-app-logs.oauth2_client_clientSecret:
+    description: "The Elastic Runtime UAA logsearch_for_cloudfoundry client password"
+  push-cf-app-logs.logsearch_elasticsearchAdminUri:
+    description: "The (internal) admin Uri to Elasticsearch ( eg: http://10.244.0.101:9200 )"
+  push-cf-app-logs.zuul_routes_kibana_url:
+    description: "The (internal) Uri to Kibana ( eg: http://10.244.0.52:5601 )"

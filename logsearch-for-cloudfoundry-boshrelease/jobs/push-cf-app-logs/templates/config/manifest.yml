@@ -1,0 +1,17 @@
+---
+applications:
+- name: app-logs
+  memory: 512M
+  instances: 1
+  buildpack: java_buildpack
+  path: /var/vcap/packages/cf-app-logs/cf-app-logs-0.0.2-SNAPSHOT.jar
+  env:
+    spring_oauth2_client_clientId: <%=p('push-cf-app-logs.oauth2_client_clientId')%>
+    spring_oauth2_client_clientSecret: "<%=p('push-cf-app-logs.oauth2_client_clientSecret')%>"
+    spring_oauth2_client_accessTokenUri: <%=p('push-cf-app-logs.oauth2_client_accessTokenUri')%>
+    spring_oauth2_client_userAuthorizationUri: <%=p('push-cf-app-logs.oauth2_client_userAuthorizationUri')%>
+    spring_oauth2_resource_jwt_keyUri: <%=p('push-cf-app-logs.oauth2_resource_jwt_keyUri')%>
+    cloudfoundry_cloudControllerUri: <%=p('push-cf-app-logs.cloudfoundry_cloudControllerUri')%>
+    cloudfoundry_uaaUri: <%=p('push-cf-app-logs.cloudfoundry_uaaUri')%>
+    logsearch_elasticsearchAdminUri: <%=p('push-cf-app-logs.logsearch_elasticsearchAdminUri')%>
+    zuul_routes_kibana_url: <%=p('push-cf-app-logs.zuul_routes_kibana_url')%>
